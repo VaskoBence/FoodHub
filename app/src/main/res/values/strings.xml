@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">FoodHub</string>
+    <string name="password">Jelszó</string>
+    <string name="login_button">Bejelentkezés</string>
+    <string name="register_button">Regisztráció</string>
+    <string name="username">Felhasználónév</string>
+    <string name="foodhub_logo">Foodhub logo</string>
+    <string name="e_mail">E-mail cím</string>
+    <string name="vissza">Vissza</string>
+    <string name="password_confirm">Jelszó megerősítése</string>
+    <string name="search">Keresés...</string>
+    <string name="profil">Profil</string>
+    <string name="new_recipe">Új recept hozzáadása</string>
+    <string name="kijelentkez_s">Kijelentkezés</string>
+    <string name="pic_upload">Kép feltöltése</string>
+    <string name="ingredients">Hozzávalók (egy sor = egy hozzávaló)</string>
+    <string name="food_description">Leírás, elkészítési mód</string>
+    <string name="save_recipe">Recept mentése</string>
+    <string name="title_recipe">Recept címe</string>
+    <string name="own_profile">Saját profil</string>
+    <string name="own_recipes">Saját receptek</string>
+    <string name="saved_recipes">Mentett receptek</string>
+</resources>
