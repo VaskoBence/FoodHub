@@ -36,7 +36,7 @@ Az alkalmazás reszponzív, több kijelzőmérethez és elforgatáshoz is alkalm
 | **Beviteli mezők típusa** | E-mail mezőhöz e-mail keyboard, jelszó csillagozva | `activity_login.xml`, `activity_register.xml` |
 | **Kétféle layout** | ConstraintLayout és LinearLayout | `activity_profile.xml`, `activity_recipe_detail.xml`, stb. |
 | **Reszponzív GUI** | ScrollView, wrap_content, megfelelő margók és paddingek | Minden fő layout XML |
-| **Elforgatás kezelése** | Layout igényes marad elforgatáskor | Pl. `activity_profile.xml` |
+| **Elforgatás kezelése** | Layout igényes marad elforgatáskor, de a legtöbb helyen le van tiltva | Pl. `activity_profile.xml` |
 | **2 Animáció használata** | Slide animáció két activity váltáskor, pulse animáció | `/res/anim/slide_in_right.xml`, `slide_out_left.xml` és `overridePendingTransition()` hívások, `pulse_animation.xml` |
 | **Intentek használata** | Activityk között navigáció | `Intent` hívások minden fő képernyőn |
 | **Lifecycle Hook** | onPause() és onResume() a MainActivity-ben a receptlista frissítéséhez | `MainActivity.java`|
@@ -50,9 +50,9 @@ Az alkalmazás reszponzív, több kijelzőmérethez és elforgatáshoz is alkalm
 ## 🔍 Ellenőrzéshez tippek
 
 - **Teszteléshez**: próbálj regisztrálni, majd jelentkezz be, nézd meg az oldalak közti navigálást.
-- **Responsiveness**: próbáld ki elforgatással vagy tablet emulátorral.
-- **Animációk**: `overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)` pl. `LoginActivity` → `RegisterActivity` váltáskor.
-
+- **Responsiveness**: próbáld ki elforgatással (ahol engedélyezve van) vagy tablet emulátorral. (Ha rámész egy xml fájlra, akkor a jobb sávon megjelenik egy 'Layout Validation' gomb.)
+- **Animációk**: `overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)` pl. `LoginActivity` → `RegisterActivity` váltáskor. Nézd meg a `MainActivity.java`-ban a '+' gombot.
+- **Notifications**: Az egyik notification fájl feltöltéskor jön létre. A scheduler minden nap dél után 5 perccel ad értesítést, hogy előző nap dél óta hány recept feltöltés volt.
 ---
 
 ## 🚀 Futtatás
