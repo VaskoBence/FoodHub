@@ -20,4 +20,5 @@
     <string name="own_profile">Saját profil</string>
     <string name="own_recipes">Saját receptek</string>
     <string name="saved_recipes">Mentett receptek</string>
+    <string name="delete_recipe">Delete Recipe</string>
 </resources>

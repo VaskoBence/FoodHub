@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".AddrecipeActivity"
+    tools:context=".UpdaterecipeActivity"
     android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Új recept hozzáadása"
+            android:text="Recept módosítása"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,18 +34,17 @@
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/img_placeholder"
             app:layout_constraintTop_toBottomOf="@+id/addRecipeTitleTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="Recipe Image" />
 
         <Button
-            android:id="@+id/uploadImageButton"
+            android:id="@+id/selectImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kép feltöltése"
-            android:onClick="chooseImage"
             app:layout_constraintTop_toBottomOf="@+id/recipeImageView"
             app:layout_constraintStart_toStartOf="parent"
             android:backgroundTint="#FFA500"
@@ -60,7 +59,7 @@
             android:hint="Recept neve"
             android:inputType="text"
             android:focusableInTouchMode="true"
-            app:layout_constraintTop_toBottomOf="@+id/uploadImageButton"
+            app:layout_constraintTop_toBottomOf="@+id/selectImageButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -99,7 +98,6 @@
             android:backgroundTint="#FFA500"
             android:textColor="#000000"
             android:padding="12dp"
-            android:onClick="saveRecipe"
             app:layout_constraintTop_toBottomOf="@+id/descriptionEditText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

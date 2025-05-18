@@ -27,7 +27,8 @@
             android:contentDescription="@string/foodhub_logo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:onClick="toMain"/>
 
         <ImageView
             android:id="@+id/profileIcon"
@@ -106,19 +107,18 @@
                 android:background="#1E1E1E"
                 android:padding="8dp" />
 
-            <!-- Mentett receptek felirat -->
+            <!-- Kedvenc receptek felirat -->
             <TextView
                 android:id="@+id/savedRecipesLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/saved_recipes"
+                android:text="Kedvencek"
                 android:textColor="#FFA500"
                 android:textSize="18sp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="8dp"
                 android:paddingHorizontal="8dp"/>
 
-            <!-- Mentett receptek lista -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/savedRecipesRecyclerView"
                 android:layout_width="match_parent"
@@ -144,5 +144,6 @@
         android:backgroundTint="#FFA500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp" />
+        android:layout_margin="20dp"
+        android:onClick="toAddRecipe"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,12 +23,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText usernameEditText, emailEditText, passwordEditText, passwordConfirmEditText;
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
 
 
@@ -39,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         usernameEditText = findViewById(R.id.usernameEditText);
         emailEditText = findViewById(R.id.emailEditText);
@@ -79,9 +84,23 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Sikeres Regisztráció!", Toast.LENGTH_SHORT).show();
-                            startActivity(intent);
-                            finish();
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("username", username);
+                            user.put("email", email);
+                            user.put("profileImage", null); // Alapértelmezett profilkép URL
+
+                            db.collection("users")
+                                    .document(mAuth.getCurrentUser().getUid())
+                                    .set(user)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(RegisterActivity.this, "Sikeres Regisztráció!", Toast.LENGTH_SHORT).show();
+                                        startActivity(intent);
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e(LOG_TAG, "Hiba a felhasználó létrehozásakor a Firestore-ban!", e);
+                                        Toast.makeText(RegisterActivity.this, "Hiba a felhasználó létrehozásakor!", Toast.LENGTH_SHORT).show();
+                                    });
                         } else {
                             Exception exception = task.getException();
                             if (exception instanceof FirebaseAuthWeakPasswordException) {
