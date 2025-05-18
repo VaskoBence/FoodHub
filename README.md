@@ -25,102 +25,25 @@ Az alkalmazás reszponzív, több kijelzőmérethez és elforgatáshoz is alkalm
 
 ---
 
-# Javítói segédlet – Szabaduló szoba Angular projekt
+## 🗂 Felépítés és segédlet a javítókulcshoz
 
-**Fordítási hiba nincs:**  
-- `ng serve` futtatásakor nincs hiba.
-
-**Futtatási hiba nincs:**  
-- A böngésző konzolban sem jelenik meg hiba.
-
----
-
-## Követelmények és megvalósításuk helye
-
-### 1. Adatmodell definiálása (legalább 4 TypeScript interfész vagy class)
-- `src/app/models/score.model.ts` – `Score` interface
-- `src/app/models/level.model.ts` – `Level` interface
-- `src/app/models/tile.model.ts` – `Tile` interface
-- `src/app/models/progress.model.ts` – `Progress` interface
-
-### 2. Reszponzív, mobile-first felület
-- Globális: `src/styles.scss`
-- Példák: `app.component.scss`, `game.component.scss`, `profile.component.scss`, `registration.component.scss`
-- Minden oldal mobilon is jól jelenik meg.
-
-### 3. Legalább 4, de 2 különböző attribútum direktíva használata
-- `[ngClass]`, `[ngStyle]`, `[disabled]`, `[routerLink]` – pl. `level-selector.component.html`, `profile.component.html`, `statistics.component.html`
-
-### 4. Legalább 4, de 2 különböző beépített vezérlési folyamat használata
-- `*ngIf`, `*ngFor` – pl. `statistics.component.html`, `profile.component.html`, `levels.component.html`
-- (Ha van: `*ngSwitch`, `*ngSwitchCase`)
-
-### 5. Adatátadás szülő és gyermek komponensek között (legalább 3 @Input és 3 @Output)
-- `level-selector.component.ts`:  
-  - `@Input() levels`, `@Input() selectedLevelId`, `@Input() showLocked`
-  - `@Output() selectLevel`, `@Output() filterLevels`, `@Output() addLevel`
-- Használat: `levels.component.html`
-
-### 6. Legalább 10 különböző Material elem helyes használata
-- `MatCardModule`, `MatFormFieldModule`, `MatInputModule`, `MatButtonModule`, `MatIconModule`, `MatTableModule`, `MatSelectModule`, `MatSnackBarModule`, `MatDialogModule`, `MatProgressBarModule` stb.
-- Példák: `registration.component.html`, `login.component.html`, `profile.component.html`, `levels.component.html`
-
-### 7. Legalább 2 saját Pipe osztály írása és használata
-- `src/app/pipe/tile-icon.pipe.ts` – `TileIconPipe`
-- `src/app/pipe/difficulty-color.pipe.ts` – `DifficultyColorPipe`
-- Használat: `game.component.html`
-
-### 8. Adatbevitel Angular form-ok segítségével (legalább 4)
-- `registration.component.html` – regisztrációs űrlap
-- `login.component.html` – bejelentkezési űrlap
-- `profile.component.html` – profil szerkesztés
-- (Ha van: szint létrehozás vagy pálya szerkesztés)
-
-### 9. Legalább 2 különböző Lifecycle Hook használata
-- `ngOnInit` – pl. minden fő komponensben (`game.component.ts`, `statistics.component.ts`, `levels.component.ts`)
-- (Ha van: `ngOnDestroy`, `ngAfterViewInit`)
-
-### 10. CRUD műveletek mindegyike megvalósult legalább a projekt fő entitásához (Promise, Observable használattal)
-- Példa:  
-  - Létrehozás: `game.component.ts` – pont mentése Firestore-ba (`addDoc`)
-  - Olvasás: `statistics.component.ts` – leaderboard lekérdezés (`getDocs`)
-  - Módosítás: `profile.component.ts` – profil frissítés (`updateDoc`)
-  - Törlés: `profile.component.ts` – profil törlés (`deleteDoc`)
-- Promise és Observable is használatban.
-
-### 11. CRUD műveletek service-ekbe vannak kiszervezve és megfelelő módon injektálva lettek
-- Példa: `auth.service.ts` – bejelentkezés, regisztráció, kijelentkezés
-- Service injektálás: pl. minden fő komponens konstruktorában
-
-### 12. Legalább 4 komplex Firestore lekérdezés (where, rendezés, limit, stb.)
-- `statistics.component.ts` – `loadLeaderboard()` metódus:
-  - Top 10: where + orderBy + limit
-  - Utolsó 7 nap: where + where + orderBy + limit
-  - Saját eredmények: where + where + orderBy + limit
-  - Legjobb mindenkitől: where + orderBy + frontenden aggregálva
-
-### 13. Legalább 4 különböző route a különböző oldalak eléréséhez
-- `app.routes.ts`:
-  - `/login`
-  - `/registration`
-  - `/levels`
-  - `/game/:levelId`
-  - `/profile`
-  - `/statistics`
-
-### 14. AuthGuard implementációja
-- `guards/auth.guard.ts` – és használata: `app.routes.ts` (pl. `canActivate: [authGuard]`)
-
-### 15. Legalább 2 route levédése azonosítással (AuthGuard)
-- `app.routes.ts`:  
-  - `/levels`, `/game/:levelId`, `/profile`, `/statistics` route-ok AuthGuard-dal védve
-
-### 16. Szubjektív pontozás
-- A projekt teljes egészében a szabaduló szoba témakörhöz kapcsolódik, minden fő funkció (szint, játék, statisztika, profil) megvalósult, a kód strukturált, a felület reszponzív, a Firestore használat komplex.
-
----
-
-**Ha valamelyik követelmény nem lenne egyértelműen megtalálható, kérlek jelezd!**
+| Kritérium | Megvalósítás | Hol található |
+|----------|---------------|----------------|
+| **Fordítási és futtatási hibák** | Nincsenek | Projekt fut Android Studio alatt |
+| **Firebase Autentikáció** | Regisztráció és bejelentkezés | `LoginActivity.java`, `RegisterActivity.java` |
+| **Adatmodell definiálása** | Recipe osztály | `Recipe.java` |
+| **Legalább 4 activity** | `LoginActivity,RegisterActivity,MainActivity,AddrecipeActivity,ProfileActivity,RecipeDetailActivity` | Projektben megtalálhatók |
+| **Beviteli mezők típusa** | E-mail mezőhöz e-mail keyboard, jelszó csillagozva | `activity_login.xml`, `activity_register.xml` |
+| **Kétféle layout** | ConstraintLayout és LinearLayout | `activity_profile.xml`, `activity_recipe_detail.xml`, stb. |
+| **Reszponzív GUI** | ScrollView, wrap_content, megfelelő margók és paddingek | Minden fő layout XML |
+| **Elforgatás kezelése** | Layout igényes marad elforgatáskor, de a legtöbb helyen le van tiltva | Pl. `activity_profile.xml` |
+| **2 Animáció használata** | Slide animáció két activity váltáskor, pulse animáció | `/res/anim/slide_in_right.xml`, `slide_out_left.xml` és `overridePendingTransition()` hívások, `pulse_animation.xml` |
+| **Intentek használata** | Activityk között navigáció | `Intent` hívások minden fő képernyőn |
+| **Lifecycle Hook** | onPause() és onResume() a MainActivity-ben a receptlista frissítéséhez | `MainActivity.java`|
+| **2 Android erőforrás** | Értesítési engedély (POST_NOTIFICATIONS), Kamera engedély, Storage engedély | `MainActivity.java, AddrecipeActivity.java`|
+| **2 rendszerszolgáltatás** | Notification, JobScheduler | `DailyNotificationJobService.java, MainActivity.java`|
+| **CRUD műveletek** | ecept létrehozása, olvasása, frissítése, törlése | `AddrecipeActivity.java, ProfileActivity.java, RecipeDetailActivity.java`|
+| **3 komplex Firestore lekérdezés** | Rendezés, where feltételek(where() +orderby() , és wheregreaterthanorequalto() | `MainActivity.java, DailyNotificationJobService.java,ProfileActivity.java`|
 
 ---
 
